@@ -10,6 +10,7 @@ Route::get('/', function () {
 
 
 Route::resource('playlist', PlaylistController::class);
+Route::post('playlist/{playlist}/addsong',[PlaylistController::class, 'addSong'])->name('playlist.addsong');
 Route::resource('song', SongController::class);
 
 
