@@ -23,11 +23,14 @@
                 </div>
             </div>
             <div class="px-6 pt-4 pb-2">
+                <h1>Songs</h1>
                 <table class="w-full table-auto">
                     <tbody>
-                        <tr>
-                            <td class="border px-4 py-2">Song 1</td>
-                        </tr>
+                        @foreach($playlist->songs as $song)
+                            <tr>
+                                <td class="border px-4 py-2">{{ $song->title }} | {{ $song->artist }}</td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
