@@ -98,8 +98,17 @@ class PlaylistController extends Controller
     }
 
     public function addSong(Request $request, Playlist $playlist) {
-        // \Log::debug($playlist);
+        if ($playlist->songs->contains($request['song'])) {
+            return redirect()->back()->with('error', 'Song is already in the playlist.');
+        }
+
         $playlist->songs()->attach($request['song']);
         return redirect('/playlist/' . $playlist->id)->with('success', 'Song added successfully!');
+    }
+
+    public function removeSong(Request $request, Playlist $playlist) {
+        // \Log::debug($request);
+        $playlist->songs()->detach($request['song']);
+        return redirect('/playlist/' . $playlist->id)->with('success', 'Song removed successfully!');
     }
 }
